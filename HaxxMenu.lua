@@ -43,6 +43,18 @@
 	Example Script:
 		> https://hastebin.com/jakibotohi.lua
 --]]
+local charset = {}
+for i = 48, 57 do table.insert(charset, string.char(i)) end
+for i = 65, 90 do table.insert(charset, string.char(i)) end
+for i = 97, 122 do table.insert(charset, string.char(i)) end
+function RandomCharacters(length)
+    if length > 0 then
+        return RandomCharacters(length - 1) .. charset[math.random(1, #charset)]
+    else
+        return ""
+    end
+end
+
 
 local ModMenu = {}
 local ModMenuDefaultSettings = {
@@ -62,7 +74,7 @@ ModMenu.CreateMenu = function(Settings)
 		return
 	end
 	local Menu = Instance.new'ScreenGui'
-	Menu.Name = 'ModMenu'
+	Menu.Name = RandomCharacters(math.random(3,30))
     Menu.Parent = game:GetService'CoreGui'
     local RFrameGuis = {}
     local RTextLabels = {}
